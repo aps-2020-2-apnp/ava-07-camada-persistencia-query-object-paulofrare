@@ -9,12 +9,12 @@ const dao = new DAO('usuarios')
 
 const usuario = new Usuario('F', 'Soares')
 const daoUsuario = new UsuarioDAO()
-//console.log(daoUsuario.findAll())
-if (usuario.isValid) {
-  daoUsuario.add(usuario)
-} else {
-  console.log(usuario.erros)
-}
+console.log(daoUsuario.update({id: 1, nome:"Paulo", sobrenome:"Duarte"}))
+// if (usuario.isValid) {
+//   daoUsuario.add(usuario)
+// } else {
+//   console.log(usuario.erros)
+// }
 
 
 

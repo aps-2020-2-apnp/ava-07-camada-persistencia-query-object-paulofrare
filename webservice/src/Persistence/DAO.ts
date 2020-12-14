@@ -26,4 +26,28 @@ export class DAO {
     console.log(SQL)
     this._db.prepare(SQL).run(obj)
   }
+
+  findById(id:number){
+    const SQL = `SELECT * FROM ${this._table} WHERE id=${id};`
+    return this._db.prepare(SQL).get()
+    }
+
+  remove(id:number){
+    const row = this.findById(id)
+    if(row) {
+      const SQL = `DELETE FROM ${this._table} WHERE id=${id};`
+      return this._db.prepare(SQL).run()
+    }
+  }
+
+  update(obj:any){
+    let SQL = `UPDATE ${this._table} SET `
+    let values = []
+    for (var prop in obj) {
+      values.push(`${prop} = '${obj[prop]}'`)
+    }
+    SQL += values.join(', ')
+    SQL += ` WHERE id = ${obj.id};`
+    return this._db.prepare(SQL).run()
+  }
 }
